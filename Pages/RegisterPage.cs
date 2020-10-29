@@ -40,7 +40,7 @@ namespace test.Pages
             ConfirmEmailAddress.WebElement = driver.FindElement(By.Id("confirmemail"));
             Password.WebElement = driver.FindElement(By.Id("password"));
             ConfirmPassword.WebElement = driver.FindElement(By.Id("confirmpassword"));
-            Title.WebElement = driver.FindElement(By.Id("title"));
+            Title.WebElement = driver.FindElement(By.CssSelector(".form-control#title"));
             Company.WebElement = driver.FindElement(By.Id("company"));
             Phone.WebElement = driver.FindElement(By.Id("phone"));
             Address1.WebElement = driver.FindElement(By.Id("address1"));
@@ -66,7 +66,7 @@ namespace test.Pages
             ConfirmEmailAddress.WebElement = driver.FindElement(By.Id("confirmemail"));
             Password.WebElement = driver.FindElement(By.Id("password"));
             ConfirmPassword.WebElement = driver.FindElement(By.Id("confirmpassword"));
-            Title.WebElement = driver.FindElement(By.Id("title"));
+            Title.WebElement = driver.FindElement(By.CssSelector(".form-control#title"));
             Company.WebElement = driver.FindElement(By.Id("company"));
             Phone.WebElement = driver.FindElement(By.Id("phone"));
             Address1.WebElement = driver.FindElement(By.Id("address1"));
@@ -92,7 +92,7 @@ namespace test.Pages
             {
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id("sbut")));
             }
-            catch (TimeoutException)
+            catch (OpenQA.Selenium.WebDriverTimeoutException)
             {
                 return false;
             }

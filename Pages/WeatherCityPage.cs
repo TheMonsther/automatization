@@ -14,9 +14,19 @@ namespace SeleniumAutomatization.Pages
 
         public WeatherCityPage(IWebDriver driver)
         {
-            city.WebElement = driver.FindElement(By.Id("city"));
-            state.WebElement = driver.FindElement(By.Id("state"));
-            tryButton = driver.FindElement(By.CssSelector("btn"));
+            City.WebElement = driver.FindElement(By.Id("city"));
+            State.WebElement = driver.FindElement(By.Id("state"));
+            TryButton = driver.FindElement(By.CssSelector("btn"));
         }
+
+        public void SetDatas()
+        {
+            City.WebElement.SendKeys(City.Text);
+            State.WebElement.SendKeys(State.Text);
+        }
+
+        public IWebElement TryButton { get => tryButton; set => tryButton = value; }
+        internal TextField City { get => city; set => city = value; }
+        internal TextField State { get => state; set => state = value; }
     }
 }

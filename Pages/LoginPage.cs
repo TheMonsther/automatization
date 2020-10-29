@@ -10,8 +10,8 @@ namespace SeleniumAutomatization.Pages
 {
     class LoginPage
     {
-        private TextField email;
-        private TextField password;
+        private TextField email = new TextField();
+        private TextField password = new TextField();
         private IWebElement loginButton;
 
         public LoginPage(IWebDriver driver)

@@ -50,6 +50,10 @@
               "target": "Package",
               "version": "[86.0.4240.2200, )"
             },
+            "System.Security.Permissions": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
             "Xamarin.Essentials": {
               "target": "Package",
               "version": "[1.5.3.2, )"

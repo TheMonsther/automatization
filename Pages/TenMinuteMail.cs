@@ -2,8 +2,12 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace SeleniumAutomatization.Pages
 {
@@ -25,12 +29,25 @@ namespace SeleniumAutomatization.Pages
         public string GetConfirmationLink(IWebDriver driver)
         {
             string link;
+            IWebElement openMailMessage;
 
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.ClassName("message_bottom")));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            try
+            {
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.CssSelector(".message_bottom p")));
+            } catch(OpenQA.Selenium.WebDriverTimeoutException)
+            {
+                Debug.Assert(true, "email delayed too much");
+            }
+            openMailMessage = driver.FindElement(By.ClassName("message_top"));
+            openMailMessage.Click();
+            
+            Thread.Sleep(2000);//time to site think
 
-            MailConfirmationBranch = driver.FindElements(By.Id("message_bottom")).ElementAt<IWebElement>(driver.FindElements(By.Id("message_bottom")).Count -1);
-            link = MailConfirmationBranch.Text;
+            IList<IWebElement> elements = driver.FindElements(By.CssSelector(".message_bottom p"));
+            MailConfirmationBranch = elements.ElementAt<IWebElement>(9);
+            link = MailConfirmationBranch.Text; 
+            
             link = link.Substring(93);
 
             return link;
