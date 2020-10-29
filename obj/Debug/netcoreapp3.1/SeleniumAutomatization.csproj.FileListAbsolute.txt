@@ -1,0 +1,17 @@
+C:\Users\renar\Desktop\SeleniumAutomatization\bin\Debug\netcoreapp3.1\SeleniumAutomatization.exe
+C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.csprojAssemblyReference.cache
+C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.AssemblyInfoInputs.cache
+C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.AssemblyInfo.cs
+C:\Users\renar\Desktop\SeleniumAutomatization\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\renar\Desktop\SeleniumAutomatization\bin\Debug\netcoreapp3.1\WebDriver.dll
+C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.csproj.CopyComplete
+C:\Users\renar\Desktop\SeleniumAutomatization\bin\Debug\netcoreapp3.1\SeleniumAutomatization.deps.json
+C:\Users\renar\Desktop\SeleniumAutomatization\bin\Debug\netcoreapp3.1\SeleniumAutomatization.runtimeconfig.json
+C:\Users\renar\Desktop\SeleniumAutomatization\bin\Debug\netcoreapp3.1\SeleniumAutomatization.runtimeconfig.dev.json
+C:\Users\renar\Desktop\SeleniumAutomatization\bin\Debug\netcoreapp3.1\SeleniumAutomatization.dll
+C:\Users\renar\Desktop\SeleniumAutomatization\bin\Debug\netcoreapp3.1\SeleniumAutomatization.pdb
+C:\Users\renar\Desktop\SeleniumAutomatization\bin\Debug\netcoreapp3.1\SeleniumExtras.WaitHelpers.dll
+C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.csproj.CoreCompileInputs.cache
+C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.dll
+C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.pdb
+C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.genruntimeconfig.cache
