@@ -49,6 +49,10 @@
             "Selenium.WebDriver.ChromeDriver": {
               "target": "Package",
               "version": "[86.0.4240.2200, )"
+            },
+            "Xamarin.Essentials": {
+              "target": "Package",
+              "version": "[1.5.3.2, )"
             }
           },
           "imports": [

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,6 +27,8 @@ namespace test.Pages
         private TextField referralCode = new TextField();
         private TextField whereHeard = new TextField();
         private IWebElement agrrement;
+        private IWebElement captha;
+        private IWebElement registerButton;
 
         
 
@@ -49,6 +52,8 @@ namespace test.Pages
             ReferralCode.WebElement = driver.FindElement(By.Id("referral"));
             WhereHeard.WebElement = driver.FindElement(By.Id("whereheard"));
             Agrrement = driver.FindElement(By.Id("acceptCheckbox"));
+            Captha = driver.FindElement(By.ClassName("recaptcha-checkbox-border"));
+            RegisterButton = driver.FindElement(By.Id("sbut"));
 
             ReferralCode.Text = referralCode;
         }
@@ -61,7 +66,7 @@ namespace test.Pages
             ConfirmEmailAddress.WebElement = driver.FindElement(By.Id("confirmemail"));
             Password.WebElement = driver.FindElement(By.Id("password"));
             ConfirmPassword.WebElement = driver.FindElement(By.Id("confirmpassword"));
-            Title.WebElement = driver.FindElement(By.CssSelector(".form-control#title"));
+            Title.WebElement = driver.FindElement(By.Id("title"));
             Company.WebElement = driver.FindElement(By.Id("company"));
             Phone.WebElement = driver.FindElement(By.Id("phone"));
             Address1.WebElement = driver.FindElement(By.Id("address1"));
@@ -73,15 +78,28 @@ namespace test.Pages
             ReferralCode.WebElement = driver.FindElement(By.Id("referral"));
             WhereHeard.WebElement = driver.FindElement(By.Id("whereheard"));
             Agrrement = driver.FindElement(By.Id("acceptCheckbox"));
+            Captha = driver.FindElement(By.ClassName("recaptcha-checkbox-border"));
+            RegisterButton = driver.FindElement(By.Id("sbut"));
         }
 
-
+        public bool VerifyCaptha(IWebDriver driver)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            try
+            {
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id("sbut")));
+            }
+            catch (TimeoutException)
+            {
+                return false;
+            }
+            return true;
+        }
         public void SetDatas()
         {
             FirstName.WebElement.SendKeys(FirstName.Text);
             LastName.WebElement.SendKeys(LastName.Text);
             EmailAddress.WebElement.SendKeys(EmailAddress.Text);
-            ConfirmEmailAddress.WebElement.SendKeys(ConfirmEmailAddress.Text);
             ConfirmEmailAddress.WebElement.SendKeys(ConfirmEmailAddress.Text);
             Password.WebElement.SendKeys(Password.Text);
             ConfirmPassword.WebElement.SendKeys(ConfirmPassword.Text);
@@ -117,5 +135,7 @@ namespace test.Pages
         internal TextField ZipPostalCodeCountry { get => zipPostalCodeCountry; set => zipPostalCodeCountry = value; }
         internal TextField ReferralCode { get => referralCode; set => referralCode = value; }
         internal TextField WhereHeard { get => whereHeard; set => whereHeard = value; }
+        public IWebElement Captha { get => captha; set => captha = value; }
+        public IWebElement RegisterButton { get => registerButton; set => registerButton = value; }
     }
 }

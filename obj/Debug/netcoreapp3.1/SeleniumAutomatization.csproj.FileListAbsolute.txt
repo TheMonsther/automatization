@@ -11,7 +11,6 @@ C:\Users\renar\Desktop\SeleniumAutomatization\bin\Debug\netcoreapp3.1\SeleniumAu
 C:\Users\renar\Desktop\SeleniumAutomatization\bin\Debug\netcoreapp3.1\SeleniumAutomatization.dll
 C:\Users\renar\Desktop\SeleniumAutomatization\bin\Debug\netcoreapp3.1\SeleniumAutomatization.pdb
 C:\Users\renar\Desktop\SeleniumAutomatization\bin\Debug\netcoreapp3.1\SeleniumExtras.WaitHelpers.dll
-C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.csproj.CoreCompileInputs.cache
 C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.dll
 C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.pdb
 C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.genruntimeconfig.cache
