@@ -1,0 +1,43 @@
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace SeleniumAutomatization.Pages
+{
+    class TenMinuteMail
+    {
+        private IWebElement copyButton;
+        private IWebElement mailConfirmationBranch;
+        private IReadOnlyCollection<IWebElement> mailContent;
+
+        public TenMinuteMail(IWebDriver driver)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("mail_messages_content")));
+
+            MailContent = driver.FindElements(By.Id("mail_messages_content"));
+            CopyButton = driver.FindElement(By.Id("copy_address"));
+        }
+
+        public string GetConfirmationLink(IWebDriver driver)
+        {
+            string link;
+
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.ClassName("message_bottom")));
+
+            MailConfirmationBranch = driver.FindElements(By.Id("message_bottom")).ElementAt<IWebElement>(driver.FindElements(By.Id("message_bottom")).Count -1);
+            link = MailConfirmationBranch.Text;
+            link = link.Substring(93);
+
+            return link;
+        }
+
+        public IWebElement CopyButton { get => copyButton; set => copyButton = value; }
+        public IReadOnlyCollection<IWebElement> MailContent { get => mailContent; set => mailContent = value; }
+        public IWebElement MailConfirmationBranch { get => mailConfirmationBranch; set => mailConfirmationBranch = value; }
+    }
+}
