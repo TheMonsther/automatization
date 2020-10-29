@@ -78,8 +78,11 @@ namespace test.Pages
             ReferralCode.WebElement = driver.FindElement(By.Id("referral"));
             WhereHeard.WebElement = driver.FindElement(By.Id("whereheard"));
             Agrrement = driver.FindElement(By.Id("acceptCheckbox"));
-            Captha = driver.FindElement(By.ClassName("recaptcha-checkbox-border"));
             RegisterButton = driver.FindElement(By.Id("sbut"));
+
+            
+
+            
         }
 
         public bool VerifyCaptha(IWebDriver driver)

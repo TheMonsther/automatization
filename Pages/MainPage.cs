@@ -9,6 +9,7 @@ namespace test.Pages
     class MainPage
     {
         private IWebElement registerButton;
+        private IWebElement homeButton;
         IReadOnlyCollection<IWebElement> elements;
 
         public MainPage(IWebDriver driver)
@@ -18,9 +19,11 @@ namespace test.Pages
 
             Elements = driver.FindElements(By.Id("navbarSupport1"));
             RegisterButton = Elements.Last<IWebElement>().FindElement(By.CssSelector("a[href*=\"register\"]"));
+            HomeButton = Elements.First<IWebElement>().FindElement(By.CssSelector("a[href*=\"services\"]"));
         }
 
         public IWebElement RegisterButton { get => registerButton; set => registerButton = value; }
         public IReadOnlyCollection<IWebElement> Elements { get => elements; set => elements = value; }
+        public IWebElement HomeButton { get => homeButton; set => homeButton = value; }
     }
 }
