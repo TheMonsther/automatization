@@ -1,18 +1,25 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using SeleniumAutomatization.Pages;
+using SeleniumAutomatization.Test2Pages;
 using System;
 using System.Diagnostics;
-using test.Pages;
 using System.Windows.Forms;
-using System.Threading;
+using test.Pages;
 
 namespace test
 {
     class Program
     {
-        [STAThread]
+        
         static void Main(string[] args)
+        {
+            Test1();
+            Test2();
+        }
+
+        [STAThread]
+        public static void Test1()
         {
             IWebDriver driver = new ChromeDriver();
             IWebDriver tenMinuteDriver;
@@ -24,9 +31,10 @@ namespace test
             ServicesPage servicesPage;
             WeatherCityPage weatherCityPage;
             string confirmationLink;
+            string httpReturn;
 
             int count = 0;
-            
+
             tenMinuteDriver = new ChromeDriver();
             tenMinuteDriver.Navigate().GoToUrl("https://10minutemail.com/");
             tenMinuteDriver.Manage().Window.Maximize();
@@ -37,7 +45,7 @@ namespace test
             mainPage = new MainPage(driver);
             mainPage.RegisterButton.Click();
             registerPage = new RegisterPage(driver);
-            
+
             registerPage.EmailAddress.Text = Clipboard.GetText(TextDataFormat.Text);
             registerPage.ConfirmEmailAddress.Text = Clipboard.GetText(TextDataFormat.Text);
             registerPage.Password.Text = "123456";
@@ -74,8 +82,33 @@ namespace test
             weatherCityPage = new WeatherCityPage(driver);
             weatherCityPage.City.Text = "Round Rock";
             weatherCityPage.State.Text = "TX";
-            weatherCityPage.SetDatas();
-            weatherCityPage.TryButton.Click();
+            httpReturn = weatherCityPage.SendRequest(driver);
+
+            //Debug.Assert(httpReturn.Contains("404") == false);
+            //Debug.Assert(httpReturn.Substring(4).Equals("page not found") == false);
+        }
+
+        public static void Test2()
+        {
+            MarketHomePage marketHome;
+            MarketSearchResultPage marketSearchResultPage;
+            ItemPage itemPage;
+
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("http://demo.cs-cart.com");
+
+            marketHome = new MarketHomePage(driver);
+            marketHome.Search.Text = "PC";
+            marketHome.SetDatas();
+            marketHome.SearchButton.Click();
+
+            marketSearchResultPage = new MarketSearchResultPage(driver);
+            marketSearchResultPage.OpenItem(0);
+
+            itemPage = new ItemPage(driver);
+            itemPage.AddToCartButton.Click();
+            itemPage.CheckOut(driver);
+
         }
     }
 }
