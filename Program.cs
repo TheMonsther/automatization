@@ -4,7 +4,6 @@ using SeleniumAutomatization.Pages;
 using SeleniumAutomatization.Test2Pages;
 using System;
 using System.Diagnostics;
-using System.Threading;
 using System.Windows.Forms;
 using test.Pages;
 
@@ -12,7 +11,7 @@ namespace test
 {
     class Program
     {
-        
+
         static void Main(string[] args)
         {
             //Test1();
@@ -26,7 +25,7 @@ namespace test
             IWebDriver tenMinuteDriver;
             MainPage mainPage;
             RegisterPage registerPage;
-            TenMinuteMail tenMinuteMailPage;
+            TenMinuteMailPage tenMinuteMailPage;
             ConfirmationPage confirmationPage;
             LoginPage loginPage;
             ServicesPage servicesPage;
@@ -39,7 +38,7 @@ namespace test
             tenMinuteDriver = new ChromeDriver();
             tenMinuteDriver.Navigate().GoToUrl("https://10minutemail.com/");
             tenMinuteDriver.Manage().Window.Maximize();
-            tenMinuteMailPage = new TenMinuteMail(tenMinuteDriver);
+            tenMinuteMailPage = new TenMinuteMailPage(tenMinuteDriver);
             tenMinuteMailPage.CopyButton.Click();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("http://www.interzoid.com");
@@ -54,19 +53,10 @@ namespace test
 
             registerPage.SetDatas();
             registerPage.Agrrement.Click();
-            //registerPage.Captha.Click();
+            registerPage.Register();
+            
 
-            MessageBox.Show("Waiting until Captha be manual solved.");
-            while (registerPage.VerifyCaptha(driver) == false)
-            {
-                Console.WriteLine("Waiting until Captha be manual solved.");
-                count++;
-                if (count > 10) Debug.Assert(true);
-            }
-
-            registerPage.RegisterButton.Click();
-
-            confirmationLink = tenMinuteMailPage.GetConfirmationLink(tenMinuteDriver);
+            confirmationLink = tenMinuteMailPage.GetConfirmationLink();
 
             driver.Navigate().GoToUrl(confirmationLink);
             confirmationPage = new ConfirmationPage(driver);
@@ -109,14 +99,14 @@ namespace test
 
             itemPage = new ItemPage(driver);
             itemPage.AddToCartButton.Click();
-            itemPage.CheckOut(driver);
+            itemPage.CheckOut();
 
             checkOutPage = new CheckOutPage(driver);
             checkOutPage.CheckOutAddress.Text = "test";
             checkOutPage.CheckOutEmail.Text = "test@test.com";
             checkOutPage.SetDatas();
             checkOutPage.PhoneOrderButton.Click();
-            checkOutPage.CheckOut(driver);
+            checkOutPage.CheckOut();
 
         }
     }

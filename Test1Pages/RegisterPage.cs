@@ -1,13 +1,14 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumAutomatization.Components;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics;
+using System.Windows.Forms;
 using test.Components;
 
 namespace test.Pages
 {
-    class RegisterPage
+    class RegisterPage : Page
     {
         private TextField firstName = new TextField();
         private TextField lastName = new TextField();
@@ -30,10 +31,11 @@ namespace test.Pages
         private IWebElement captha;
         private IWebElement registerButton;
 
-        
 
-        public RegisterPage(IWebDriver driver, string referral)
+
+        public RegisterPage(IWebDriver driverMain, string referral)
         {
+            driver = driverMain;
             FirstName.WebElement = driver.FindElement(By.Id("first"));
             LastName.WebElement = driver.FindElement(By.Id("last"));
             EmailAddress.WebElement = driver.FindElement(By.Id("email"));
@@ -58,8 +60,9 @@ namespace test.Pages
             ReferralCode.Text = referral;
         }
 
-        public RegisterPage(IWebDriver driver)
+        public RegisterPage(IWebDriver driverMain)
         {
+            driver = driverMain;
             FirstName.WebElement = driver.FindElement(By.Id("first"));
             LastName.WebElement = driver.FindElement(By.Id("last"));
             EmailAddress.WebElement = driver.FindElement(By.Id("email"));
@@ -82,7 +85,21 @@ namespace test.Pages
             registerButton = driver.FindElement(By.Id("sbut"));
         }
 
-        public bool VerifyCaptha(IWebDriver driver)
+        public void Register()
+        {
+            int count = 0;
+            MessageBox.Show("Waiting until Captha be manual solved.");
+            while (CheckIfEnabled() == false)
+            {
+                Console.WriteLine("Waiting until Captha be manual solved.");
+                count++;
+                if (count > 10) Debug.Assert(true);
+            }
+
+            RegisterButton.Click();
+        }
+
+        public bool CheckIfEnabled()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             try
@@ -120,22 +137,22 @@ namespace test.Pages
         public IWebElement Agrrement { get => agrrement; }
         internal TextField FirstName { get => firstName; }
         internal TextField LastName { get => lastName; }
-        internal TextField EmailAddress { get => emailAddress;}
-        internal TextField ConfirmEmailAddress { get => confirmEmailAddress;}
-        internal TextField Password { get => password;}
-        internal TextField ConfirmPassword { get => confirmPassword;}
-        internal TextField Title { get => title;}
+        internal TextField EmailAddress { get => emailAddress; }
+        internal TextField ConfirmEmailAddress { get => confirmEmailAddress; }
+        internal TextField Password { get => password; }
+        internal TextField ConfirmPassword { get => confirmPassword; }
+        internal TextField Title { get => title; }
         internal TextField Company { get => company; }
         internal TextField Phone { get => phone; }
         internal TextField Address1 { get => address1; }
-        internal TextField Address2 { get => address2;}
+        internal TextField Address2 { get => address2; }
         internal TextField City { get => city; }
         internal TextField StateProvince { get => stateProvince; }
         internal TextField ZipPostalCode { get => zipPostalCode; }
         internal TextField ZipPostalCodeCountry { get => zipPostalCodeCountry; }
         internal TextField ReferralCode { get => referralCode; }
-        internal TextField WhereHeard { get => whereHeard;}
-        public IWebElement Captha { get => captha;}
+        internal TextField WhereHeard { get => whereHeard; }
+        public IWebElement Captha { get => captha; }
         public IWebElement RegisterButton { get => registerButton; }
     }
 }

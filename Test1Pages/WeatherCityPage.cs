@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SeleniumAutomatization.Components;
 using System;
 using System.IO;
 using System.Net;
@@ -6,24 +7,35 @@ using test.Components;
 
 namespace SeleniumAutomatization.Pages
 {
-    class WeatherCityPage
+    class WeatherCityPage : Page
     {
         private TextField city = new TextField();
         private TextField state = new TextField();
         private TextField licenceKey = new TextField();
-        public WeatherCityPage(IWebDriver driver)
+        public WeatherCityPage(IWebDriver driverMain)
         {
+            driver = driverMain;
             City.WebElement = driver.FindElement(By.Id("city"));
             State.WebElement = driver.FindElement(By.Id("state"));
             LicenceKey.WebElement = driver.FindElement(By.Id("license"));
         }
 
-        public string SendRequest(IWebDriver nonUsedDriver)
+        public string SendRequest(IWebDriver driver)
         {
             LicenceKey.Text = LicenceKey.WebElement.Text;
             GetRequest("https://api.interzoid.com/getweather?license=" + LicenceKey.Text + "&city=" + City.Text + "&state=" + State.Text);
 
-            IWebElement httpReturn = nonUsedDriver.FindElement(By.CssSelector("pre"));
+            IWebElement httpReturn = driver.FindElement(By.CssSelector("pre"));
+
+            return httpReturn.Text;
+        }
+
+        public string SendRequest()
+        {
+            LicenceKey.Text = LicenceKey.WebElement.Text;
+            GetRequest("https://api.interzoid.com/getweather?license=" + LicenceKey.Text + "&city=" + City.Text + "&state=" + State.Text);
+
+            IWebElement httpReturn = driver.FindElement(By.CssSelector("pre"));
 
             return httpReturn.Text;
         }

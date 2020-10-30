@@ -1,17 +1,16 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using SeleniumAutomatization.Components;
 using test.Components;
 
 namespace SeleniumAutomatization.Test2Pages
 {
-    class MarketHomePage
+    class MarketHomePage : Page
     {
         private TextField search = new TextField();
         private IWebElement searchButton;
-        public MarketHomePage(IWebDriver driver)
+        public MarketHomePage(IWebDriver driverMain)
         {
+            driver = driverMain;
             Search.WebElement = driver.FindElement(By.Id("search_input"));
             SearchButton = driver.FindElement(By.ClassName("ty-search-magnifier"));
         }

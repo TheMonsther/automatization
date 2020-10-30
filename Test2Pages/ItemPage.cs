@@ -1,26 +1,24 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+using SeleniumAutomatization.Components;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace SeleniumAutomatization.Test2Pages
 {
-    class ItemPage
+    class ItemPage : Page
     {
         private IWebElement addToCartButton;
         private IWebElement price;
         private IWebElement cartButton;
-        public ItemPage(IWebDriver driver)
+        public ItemPage(IWebDriver driverMain)
         {
+            driver = driverMain;
             addToCartButton = driver.FindElement(By.CssSelector(".ty-btn__primary[id^=button]"));
-            price = driver.FindElements(By.CssSelector(".ty-price-num")).ElementAt<IWebElement>(1); 
+            price = driver.FindElements(By.CssSelector(".ty-price-num")).ElementAt<IWebElement>(1);
         }
 
-        public void CheckOut(IWebDriver driver)
+        public void CheckOut()
         {
             IWebElement cartItemList;
             IWebElement cartItemDescription;
@@ -52,6 +50,6 @@ namespace SeleniumAutomatization.Test2Pages
             checkOutButton.Click();
         }
         public IWebElement AddToCartButton { get => addToCartButton; }
-        public IWebElement Price { get => price;}
+        public IWebElement Price { get => price; }
     }
 }

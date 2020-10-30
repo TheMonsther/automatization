@@ -1,17 +1,17 @@
 ﻿using OpenQA.Selenium;
-using System;
+using SeleniumAutomatization.Components;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SeleniumAutomatization.Test2Pages
 {
-    class MarketSearchResultPage
+    class MarketSearchResultPage : Page
     {
         IList<IWebElement> elements;
 
-        public MarketSearchResultPage(IWebDriver driver)
+        public MarketSearchResultPage(IWebDriver driverMain)
         {
+            driver = driverMain;
             elements = driver.FindElements(By.ClassName("grid-list"));
         }
 

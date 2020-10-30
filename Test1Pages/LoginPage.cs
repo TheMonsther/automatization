@@ -1,21 +1,21 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumAutomatization.Components;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using test.Components;
 using Xamarin.Essentials;
 
 namespace SeleniumAutomatization.Pages
 {
-    class LoginPage
+    class LoginPage : Page
     {
         private TextField email = new TextField();
         private TextField password = new TextField();
         private IWebElement loginButton;
 
-        public LoginPage(IWebDriver driver)
+        public LoginPage(IWebDriver driverMain)
         {
+            driver = driverMain;
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("email")));
 
@@ -24,8 +24,9 @@ namespace SeleniumAutomatization.Pages
             loginButton = driver.FindElement(By.ClassName("btn"));
         }
 
-        public LoginPage(IWebDriver driver, string email)
+        public LoginPage(IWebDriver driverMain, string email)
         {
+            driver = driverMain;
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("email")));
 
@@ -43,8 +44,8 @@ namespace SeleniumAutomatization.Pages
             Password.WebElement.SendKeys(Password.Text);
         }
 
-        public IWebElement LoginButton { get => loginButton;}
+        public IWebElement LoginButton { get => loginButton; }
         internal TextField Email { get => email; }
-        internal TextField Password { get => password;}
+        internal TextField Password { get => password; }
     }
 }
