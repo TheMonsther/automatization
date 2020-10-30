@@ -14,7 +14,7 @@ namespace test
         
         static void Main(string[] args)
         {
-            Test1();
+            //Test1();
             Test2();
         }
 
@@ -93,6 +93,7 @@ namespace test
             MarketHomePage marketHome;
             MarketSearchResultPage marketSearchResultPage;
             ItemPage itemPage;
+            CheckOutPage checkOutPage;
 
             IWebDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("http://demo.cs-cart.com");
@@ -109,6 +110,21 @@ namespace test
             itemPage.AddToCartButton.Click();
             itemPage.CheckOut(driver);
 
+            checkOutPage = new CheckOutPage(driver);
+            checkOutPage.CheckOutAddress.Text = "test";
+            checkOutPage.CheckOutEmail.Text = "test@test.com";
+            checkOutPage.PhoneOrderButton.Click();
+            checkOutPage.AgreementButton.Click();
+
+            int count = 0;
+            MessageBox.Show("Waiting until Captha be manual solved.");
+            while (checkOutPage.VerifyCaptha(driver) == false)
+            {
+                Console.WriteLine("Waiting until Captha be manual solved.");
+                count++;
+                if (count > 10) Debug.Assert(true);
+            }
+            checkOutPage.
         }
     }
 }

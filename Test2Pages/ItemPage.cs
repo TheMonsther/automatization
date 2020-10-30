@@ -11,9 +11,9 @@ namespace SeleniumAutomatization.Test2Pages
 {
     class ItemPage
     {
-        IWebElement addToCartButton;
-        IWebElement price;
-        IWebElement cartButton;
+        private IWebElement addToCartButton;
+        private IWebElement price;
+        private IWebElement cartButton;
         public ItemPage(IWebDriver driver)
         {
             addToCartButton = driver.FindElement(By.CssSelector(".ty-btn__primary[id^=button]"));
