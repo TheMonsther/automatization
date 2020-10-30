@@ -4,6 +4,7 @@ using SeleniumAutomatization.Pages;
 using SeleniumAutomatization.Test2Pages;
 using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows.Forms;
 using test.Pages;
 
@@ -113,18 +114,10 @@ namespace test
             checkOutPage = new CheckOutPage(driver);
             checkOutPage.CheckOutAddress.Text = "test";
             checkOutPage.CheckOutEmail.Text = "test@test.com";
+            checkOutPage.SetDatas();
             checkOutPage.PhoneOrderButton.Click();
-            checkOutPage.AgreementButton.Click();
+            checkOutPage.CheckOut(driver);
 
-            int count = 0;
-            MessageBox.Show("Waiting until Captha be manual solved.");
-            while (checkOutPage.VerifyCaptha(driver) == false)
-            {
-                Console.WriteLine("Waiting until Captha be manual solved.");
-                count++;
-                if (count > 10) Debug.Assert(true);
-            }
-            checkOutPage.
         }
     }
 }

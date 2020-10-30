@@ -47,8 +47,8 @@ namespace SeleniumAutomatization.Test2Pages
             cartItemDescription = cartItemList.FindElement(By.CssSelector(".ty-cart-items__list-item-desc p"));
             itemPrice = cartItemDescription.Text.Substring(cartItemDescription.Text.Length - 6);
 
-            MessageBox.Show(Price.Text + " - " + itemPrice);
             Debug.Assert(Price.Text.Equals(itemPrice));
+            Console.WriteLine(Price.Text + " = " + itemPrice);
             checkOutButton.Click();
         }
         public IWebElement AddToCartButton { get => addToCartButton; }

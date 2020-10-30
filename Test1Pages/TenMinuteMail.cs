@@ -37,7 +37,7 @@ namespace SeleniumAutomatization.Pages
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.CssSelector(".message_bottom p")));
             } catch(OpenQA.Selenium.WebDriverTimeoutException)
             {
-                Debug.Assert(true, "email delayed too much");
+                Debug.Assert(false, "email delayed too much");
             }
             openMailMessage = driver.FindElement(By.ClassName("message_top"));
             openMailMessage.Click();
