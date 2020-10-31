@@ -15,25 +15,24 @@ namespace SeleniumAutomatization.Test1Pages
         public LoginPage(IWebDriver driverMain)
         {
             driver = driverMain;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("email")));
-
-            Email.WebElement = driver.FindElement(By.Id("email"));
-            Password.WebElement = driver.FindElement(By.Id("password"));
-            loginButton = driver.FindElement(By.ClassName("btn"));
+            SetFields();
         }
 
         public LoginPage(IWebDriver driverMain, string email)
         {
             driver = driverMain;
+            SetFields();
+            Email.Text = email;
+        }
+
+        private void SetFields()
+        {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("email")));
 
             Email.WebElement = driver.FindElement(By.Id("email"));
             Password.WebElement = driver.FindElement(By.Id("password"));
             loginButton = driver.FindElement(By.ClassName("btn"));
-
-            Email.Text = email;
         }
 
         public void SetDatas()

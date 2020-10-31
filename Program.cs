@@ -14,7 +14,7 @@ namespace SeleniumAutomatization
         static void Main(string[] args)
         {
             //I had to put both tests in main, because when I put in functions the [STAThread] didn't work properly.
-            bool test1 = false;
+            bool test1 = true;
             bool test2 = true;
 
             if (test1 == true)

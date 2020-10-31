@@ -30,36 +30,21 @@ namespace SeleniumAutomatization.Test1Pages
         private IWebElement registerButton;
 
 
-
         public RegisterPage(IWebDriver driverMain, string referral)
         {
             driver = driverMain;
-            FirstName.WebElement = driver.FindElement(By.Id("first"));
-            LastName.WebElement = driver.FindElement(By.Id("last"));
-            EmailAddress.WebElement = driver.FindElement(By.Id("email"));
-            ConfirmEmailAddress.WebElement = driver.FindElement(By.Id("confirmemail"));
-            Password.WebElement = driver.FindElement(By.Id("password"));
-            ConfirmPassword.WebElement = driver.FindElement(By.Id("confirmpassword"));
-            Title.WebElement = driver.FindElement(By.CssSelector(".form-control#title"));
-            Company.WebElement = driver.FindElement(By.Id("company"));
-            Phone.WebElement = driver.FindElement(By.Id("phone"));
-            Address1.WebElement = driver.FindElement(By.Id("address1"));
-            Address2.WebElement = driver.FindElement(By.Id("address2"));
-            City.WebElement = driver.FindElement(By.Id("city"));
-            StateProvince.WebElement = driver.FindElement(By.Id("state"));
-            ZipPostalCode.WebElement = driver.FindElement(By.Id("postal"));
-            ZipPostalCodeCountry.WebElement = driver.FindElement(By.Id("country"));
-            ReferralCode.WebElement = driver.FindElement(By.Id("referral"));
-            WhereHeard.WebElement = driver.FindElement(By.Id("whereheard"));
-            agrrement = driver.FindElement(By.Id("acceptCheckbox"));
-            registerButton = driver.FindElement(By.Id("sbut"));
-
+            SetFields();
             ReferralCode.Text = referral;
         }
 
         public RegisterPage(IWebDriver driverMain)
         {
             driver = driverMain;
+            SetFields();
+        }
+
+        private void SetFields()
+        {
             FirstName.WebElement = driver.FindElement(By.Id("first"));
             LastName.WebElement = driver.FindElement(By.Id("last"));
             EmailAddress.WebElement = driver.FindElement(By.Id("email"));
