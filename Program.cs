@@ -14,24 +14,16 @@ namespace SeleniumAutomatization
         static void Main(string[] args)
         {
             //I had to put both tests in main, because when I put in functions the [STAThread] didn't work properly.
-            bool test1 = true;
+            bool test1 = false;
             bool test2 = true;
 
             if (test1 == true)
             {
+                Console.WriteLine("Test1 starting");
+
                 string confirmationLink;
                 string email;
                 string httpStatus;
-
-                ChromeDriverService service = ChromeDriverService.CreateDefaultService();
-                service.LogPath = ".\\chromedriver.log";
-                service.EnableVerboseLogging = true;
-
-                ChromeOptions options = new ChromeOptions();
-                options.AddArgument("start-maximized");
-
-                IWebDriver driver = new ChromeDriver(options);
-                IWebDriver tenMinuteDriver = new ChromeDriver(options);
 
                 MainPage mainPage;
                 RegisterPage registerPage;
@@ -40,6 +32,12 @@ namespace SeleniumAutomatization
                 LoginPage loginPage;
                 ServicesPage servicesPage;
                 WeatherCityPage weatherCityPage;
+
+                ChromeOptions options = new ChromeOptions();
+                options.AddArgument("start-maximized");
+
+                IWebDriver driver = new ChromeDriver(options);
+                IWebDriver tenMinuteDriver = new ChromeDriver(options);
 
                 tenMinuteDriver.Navigate().GoToUrl("https://10minutemail.com/");
                 tenMinuteMailPage = new TenMinuteMailPage(tenMinuteDriver);
@@ -52,18 +50,15 @@ namespace SeleniumAutomatization
                 mainPage.LoadUpperNavBarOptionsBar();
                 mainPage.NavBarRegisterButton.Click();
 
-
                 registerPage = new RegisterPage(driver);
 
                 registerPage.EmailAddress.Text = email;
                 registerPage.ConfirmEmailAddress.Text = email;
                 registerPage.Password.Text = "123456";
                 registerPage.ConfirmPassword.Text = "123456";
-
                 registerPage.SetDatas();
-                registerPage.Agrrement.Click();
-                registerPage.Register();
 
+                registerPage.Register();
 
                 confirmationLink = tenMinuteMailPage.GetConfirmationLink();
                 driver.Navigate().GoToUrl(confirmationLink);
@@ -75,7 +70,6 @@ namespace SeleniumAutomatization
                 loginPage.Password.Text = registerPage.Password.Text;
                 loginPage.SetDatas();
                 loginPage.LoginButton.Click();
-                System.Threading.Thread.Sleep(4000);
                 loginPage.LoadUpperNavBarOptionsBar();
                 loginPage.NavBarServiceButton.Click();
 
@@ -86,26 +80,18 @@ namespace SeleniumAutomatization
                 weatherCityPage.City.Text = "Round Rock";
                 weatherCityPage.State.Text = "TX";
                 httpStatus = weatherCityPage.GetHttpStatus(weatherCityPage.LicenceKey.Text, weatherCityPage.City.Text, weatherCityPage.State.Text);
-                Console.WriteLine("\nRecived: {0}\nExpected: 200:OK", httpStatus);
-
-                //Debug.Assert(httpStatus.Substring(0,2).Equals("200"), "The recived code is different than expected code");
-                //Debug.Assert(httpStatus.Substring(2).Equals("OK"), "The recived status description is different than expected code");
+                Console.WriteLine("\n\nReceived: {0}\nExpected: 200:OK", httpStatus);
 
                 weatherCityPage.City.Text = "Tampa";
                 weatherCityPage.State.Text = "TX";
                 httpStatus = weatherCityPage.GetHttpStatus(weatherCityPage.LicenceKey.Text, weatherCityPage.City.Text, weatherCityPage.State.Text);
-                Console.WriteLine("\nRecived: {0}\nExpected: 404:Not Found", httpStatus);
-
-                //Debug.Assert(httpStatus.Substring(0, 2).Equals("404"), "The recived code is different than expected code");
-                //Debug.Assert(httpStatus.Substring(2).Equals("Not Found"), "The recived status description is different than expected code");
+                Console.WriteLine("\n\nReceived: {0}\nExpected: 404:Not Found", httpStatus);
 
                 weatherCityPage.City.Text = "--";
                 weatherCityPage.State.Text = "--";
                 httpStatus = weatherCityPage.GetHttpStatus(weatherCityPage.LicenceKey.Text, weatherCityPage.City.Text, weatherCityPage.State.Text);
-                Console.WriteLine("\nRecived: {0}\nExpected: 400:Bad Request", httpStatus);
+                Console.WriteLine("\n\nReceived: {0}\nExpected: 400:Bad Request", httpStatus);
 
-                //Debug.Assert(httpStatus.Substring(0, 2).Equals("400"), "The recived code is different than expected code");
-                //Debug.Assert(httpStatus.Substring(2).Equals("Bad Request"), "The recived status description is different than expected code");
                 driver.Close();
             }
 
@@ -117,6 +103,8 @@ namespace SeleniumAutomatization
 
         public static void Test2()
         {
+            Console.WriteLine("Test2 starting");
+
             MarketHomePage marketHome;
             MarketSearchResultPage marketSearchResultPage;
             ItemPage itemPage;

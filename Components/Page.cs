@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading;
 
 namespace SeleniumAutomatization.Components
 {
@@ -16,6 +17,7 @@ namespace SeleniumAutomatization.Components
 
         public void LoadUpperNavBarOptionsBar()
         {
+            Thread.Sleep(4000);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("navbarSupport1")));
 

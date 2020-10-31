@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using SeleniumAutomatization.Components;
 using System;
 using System.Linq;
+using System.Threading;
 
 namespace SeleniumAutomatization.Test2Pages
 {
@@ -24,7 +24,6 @@ namespace SeleniumAutomatization.Test2Pages
             IWebElement cartItemDescription;
             IWebElement checkOutButton;
             string itemPrice;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
 
             try
             {
@@ -33,7 +32,7 @@ namespace SeleniumAutomatization.Test2Pages
             }
             catch (OpenQA.Selenium.StaleElementReferenceException)
             {
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.ClassName("ty-minicart-title")));
+                Thread.Sleep(8000);
                 cartButton = driver.FindElement(By.ClassName("ty-minicart-title"));
                 cartButton.Click();
             }
@@ -43,7 +42,7 @@ namespace SeleniumAutomatization.Test2Pages
             cartItemDescription = cartItemList.FindElement(By.CssSelector(".ty-cart-items__list-item-desc p"));
             itemPrice = cartItemDescription.Text.Substring(cartItemDescription.Text.Length - 6);
 
-            Console.WriteLine(Price.Text + " = " + itemPrice);
+            Console.WriteLine("\nReceived: " + itemPrice + "\nExpected: " + Price.Text);
             checkOutButton.Click();
         }
         public IWebElement AddToCartButton { get => addToCartButton; }

@@ -31,3 +31,4 @@ C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAu
 C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.dll
 C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.pdb
 C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.genruntimeconfig.cache
+C:\Users\renar\Desktop\SeleniumAutomatization\obj\Debug\netcoreapp3.1\SeleniumAutomatization.csprojAssemblyReference.cache

@@ -6,9 +6,8 @@ namespace SeleniumAutomatization.Components
     {
         private IWebElement webElement;
         private string text = "";
-        private string expectedText;
 
-        public string Text { get => text; set { text = value; expectedText = value; } }
+        public string Text { get => text; set { text = value; } }
 
         public IWebElement WebElement { get => webElement; set { webElement = value; } }
     }

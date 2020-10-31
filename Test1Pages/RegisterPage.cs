@@ -84,6 +84,8 @@ namespace SeleniumAutomatization.Test1Pages
         public void Register()
         {
             int count = 0;
+            Agrrement.Click();
+
             MessageBox.Show("Waiting until Captha be manual solved.");
             while (CheckIfEnabled() == false)
             {

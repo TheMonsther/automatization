@@ -20,38 +20,38 @@ namespace SeleniumAutomatization.Test2Pages
         private IWebElement signinButton;
         public CheckOutPage(IWebDriver driverMain)
         {
+            IWebElement auxElement;
             driver = driverMain;
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.CssSelector(".litecheckout__group")));
 
-            CheckOutAddress.WebElement = driver.FindElements(By.CssSelector(".litecheckout__group")).ElementAt<IWebElement>(8);
-            CheckOutAddress.WebElement = CheckOutAddress.WebElement.FindElement((By.ClassName("litecheckout__label")));
+            auxElement = driver.FindElements(By.CssSelector(".litecheckout__group")).ElementAt<IWebElement>(8);
+            CheckOutAddress.WebElement = auxElement.FindElement((By.ClassName("litecheckout__label")));
 
-            checkOutAddressTxt.WebElement = driver.FindElements(By.CssSelector(".litecheckout__group")).ElementAt<IWebElement>(8);
-            checkOutAddressTxt.WebElement = checkOutAddressTxt.WebElement.FindElement((By.Id("litecheckout_s_address")));
+            auxElement = driver.FindElements(By.CssSelector(".litecheckout__group")).ElementAt<IWebElement>(8);
+            checkOutAddressTxt.WebElement = auxElement.FindElement((By.Id("litecheckout_s_address")));
 
-            CheckOutEmail.WebElement = driver.FindElements(By.CssSelector("#litecheckout_step_customer_info .litecheckout__field")).Last<IWebElement>();
-            checkOutEmailTxt.WebElement = CheckOutEmail.WebElement.FindElement((By.Id("litecheckout_email")));
+            auxElement = driver.FindElements(By.CssSelector("#litecheckout_step_customer_info .litecheckout__field")).Last<IWebElement>();
+            checkOutEmailTxt.WebElement = auxElement.FindElement((By.Id("litecheckout_email")));
+
             signinButton = driver.FindElement(By.CssSelector(".litecheckout__item .cm-dialog-opener"));
         }
 
         public void CheckOut()
         {
-            int count = 0;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-
-
             Thread.Sleep(2000);
             new Actions(driver).SendKeys(OpenQA.Selenium.Keys.PageDown).Perform();
             Thread.Sleep(1000);
+
             phoneOrderButton = driver.FindElement(By.Id("payments_2"));
             PhoneOrderButton.Click();
             Thread.Sleep(2000);
+
             IWebElement agreementButton = driver.FindElement(By.CssSelector(".litecheckout__terms input[id^=\"id_accept_terms\"]"));
             agreementButton.Click();
 
-
+            int count = 0;
             while (TryCheckOut() == false)
             {
                 count++;
