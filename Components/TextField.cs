@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace test.Components
+namespace SeleniumAutomatization.Components
 {
     class TextField
     {

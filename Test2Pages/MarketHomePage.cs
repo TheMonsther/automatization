@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SeleniumAutomatization.Components;
-using test.Components;
 
 namespace SeleniumAutomatization.Test2Pages
 {

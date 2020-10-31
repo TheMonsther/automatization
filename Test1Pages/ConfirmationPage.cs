@@ -3,7 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumAutomatization.Components;
 using System;
 
-namespace SeleniumAutomatization.Pages
+namespace SeleniumAutomatization.Test1Pages
 {
     class ConfirmationPage : Page
     {

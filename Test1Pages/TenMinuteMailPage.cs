@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 
-namespace SeleniumAutomatization.Pages
+namespace SeleniumAutomatization.Test1Pages
 {
     class TenMinuteMailPage : Page
     {
@@ -48,7 +48,7 @@ namespace SeleniumAutomatization.Pages
             MailConfirmationBranch = elements.ElementAt<IWebElement>(9);
             link = MailConfirmationBranch.Text;
 
-            link = link.Substring(93);
+            link = link.Substring(92);
 
             return link;
         }

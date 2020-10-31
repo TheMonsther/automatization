@@ -2,10 +2,9 @@
 using OpenQA.Selenium.Support.UI;
 using SeleniumAutomatization.Components;
 using System;
-using test.Components;
-using Xamarin.Essentials;
+using System.Windows.Forms;
 
-namespace SeleniumAutomatization.Pages
+namespace SeleniumAutomatization.Test1Pages
 {
     class LoginPage : Page
     {
@@ -39,7 +38,7 @@ namespace SeleniumAutomatization.Pages
 
         public void SetDatas()
         {
-            if (Email.Text.Equals("")) Email.Text = Clipboard.GetTextAsync().ToString();
+            if (Email.Text.Equals("")) Email.Text = Clipboard.GetText().ToString();
             Email.WebElement.SendKeys(Email.Text);
             Password.WebElement.SendKeys(Password.Text);
         }

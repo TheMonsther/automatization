@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumAutomatization.Components;
 using System;
-using System.Diagnostics;
 using System.Linq;
 
 namespace SeleniumAutomatization.Test2Pages
@@ -24,28 +24,25 @@ namespace SeleniumAutomatization.Test2Pages
             IWebElement cartItemDescription;
             IWebElement checkOutButton;
             string itemPrice;
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
 
-            int i = 0;
-            while (i < 4)
+            try
             {
-                try
-                {
-                    cartButton = driver.FindElement(By.ClassName("ty-minicart-title"));
-                    cartButton.Click();
-                    break;
-                }
-                catch (OpenQA.Selenium.StaleElementReferenceException)
-                {
-                    System.Threading.Thread.Sleep(8000);
-                    i++;
-                }
+                cartButton = driver.FindElement(By.ClassName("ty-minicart-title"));
+                cartButton.Click();
             }
+            catch (OpenQA.Selenium.StaleElementReferenceException)
+            {
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.ClassName("ty-minicart-title")));
+                cartButton = driver.FindElement(By.ClassName("ty-minicart-title"));
+                cartButton.Click();
+            }
+
             cartItemList = driver.FindElement(By.Id("dropdown_8"));
             checkOutButton = cartItemList.FindElement(By.ClassName("ty-float-right"));
             cartItemDescription = cartItemList.FindElement(By.CssSelector(".ty-cart-items__list-item-desc p"));
             itemPrice = cartItemDescription.Text.Substring(cartItemDescription.Text.Length - 6);
 
-            Debug.Assert(Price.Text.Equals(itemPrice));
             Console.WriteLine(Price.Text + " = " + itemPrice);
             checkOutButton.Click();
         }

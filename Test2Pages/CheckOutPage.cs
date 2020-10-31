@@ -6,8 +6,6 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using System.Windows.Forms;
-using test.Components;
 
 namespace SeleniumAutomatization.Test2Pages
 {
@@ -23,7 +21,7 @@ namespace SeleniumAutomatization.Test2Pages
         public CheckOutPage(IWebDriver driverMain)
         {
             driver = driverMain;
-            
+
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.CssSelector(".litecheckout__group")));
 
@@ -43,16 +41,16 @@ namespace SeleniumAutomatization.Test2Pages
             int count = 0;
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            
-                Thread.Sleep(2000);
-                new Actions(driver).SendKeys(OpenQA.Selenium.Keys.PageDown).Perform();
-                Thread.Sleep(1000);
-                phoneOrderButton = driver.FindElement(By.Id("payments_2"));
-                PhoneOrderButton.Click();
-                Thread.Sleep(2000);
-                IWebElement agreementButton = driver.FindElement(By.CssSelector(".litecheckout__terms input[id^=\"id_accept_terms\"]"));
-                agreementButton.Click();
-            
+
+            Thread.Sleep(2000);
+            new Actions(driver).SendKeys(OpenQA.Selenium.Keys.PageDown).Perform();
+            Thread.Sleep(1000);
+            phoneOrderButton = driver.FindElement(By.Id("payments_2"));
+            PhoneOrderButton.Click();
+            Thread.Sleep(2000);
+            IWebElement agreementButton = driver.FindElement(By.CssSelector(".litecheckout__terms input[id^=\"id_accept_terms\"]"));
+            agreementButton.Click();
+
 
             while (TryCheckOut() == false)
             {
@@ -96,7 +94,7 @@ namespace SeleniumAutomatization.Test2Pages
             CheckOutEmail.WebElement.Click();
             checkOutEmailTxt.WebElement.SendKeys(CheckOutEmail.Text);
         }
-        
+
 
         public IWebElement PhoneOrderButton { get => phoneOrderButton; }
         internal TextField CheckOutAddress { get => checkOutAddress; }

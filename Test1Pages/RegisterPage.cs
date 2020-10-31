@@ -4,9 +4,8 @@ using SeleniumAutomatization.Components;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using test.Components;
 
-namespace test.Pages
+namespace SeleniumAutomatization.Test1Pages
 {
     class RegisterPage : Page
     {
@@ -28,7 +27,6 @@ namespace test.Pages
         private TextField referralCode = new TextField();
         private TextField whereHeard = new TextField();
         private IWebElement agrrement;
-        private IWebElement captha;
         private IWebElement registerButton;
 
 
@@ -54,7 +52,6 @@ namespace test.Pages
             ReferralCode.WebElement = driver.FindElement(By.Id("referral"));
             WhereHeard.WebElement = driver.FindElement(By.Id("whereheard"));
             agrrement = driver.FindElement(By.Id("acceptCheckbox"));
-            captha = driver.FindElement(By.ClassName("recaptcha-checkbox-border"));
             registerButton = driver.FindElement(By.Id("sbut"));
 
             ReferralCode.Text = referral;
@@ -81,7 +78,6 @@ namespace test.Pages
             ReferralCode.WebElement = driver.FindElement(By.Id("referral"));
             WhereHeard.WebElement = driver.FindElement(By.Id("whereheard"));
             agrrement = driver.FindElement(By.Id("acceptCheckbox"));
-            captha = driver.FindElement(By.ClassName("recaptcha-checkbox-border"));
             registerButton = driver.FindElement(By.Id("sbut"));
         }
 
@@ -152,7 +148,6 @@ namespace test.Pages
         internal TextField ZipPostalCodeCountry { get => zipPostalCodeCountry; }
         internal TextField ReferralCode { get => referralCode; }
         internal TextField WhereHeard { get => whereHeard; }
-        public IWebElement Captha { get => captha; }
         public IWebElement RegisterButton { get => registerButton; }
     }
 }
