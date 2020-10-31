@@ -21,8 +21,19 @@ namespace test
         [STAThread]
         public static void Test1()
         {
-            IWebDriver driver = new ChromeDriver();
-            IWebDriver tenMinuteDriver;
+            string confirmationLink;
+            string httpReturn;
+
+            var service = ChromeDriverService.CreateDefaultService();
+            service.LogPath = "C:\\chromedriver.log";
+            service.EnableVerboseLogging = true;
+
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("start-maximized");
+
+            IWebDriver driver = new ChromeDriver(service, options);
+            IWebDriver tenMinuteDriver = new ChromeDriver(options);
+
             MainPage mainPage;
             RegisterPage registerPage;
             TenMinuteMailPage tenMinuteMailPage;
@@ -30,20 +41,19 @@ namespace test
             LoginPage loginPage;
             ServicesPage servicesPage;
             WeatherCityPage weatherCityPage;
-            string confirmationLink;
-            string httpReturn;
 
-            int count = 0;
+            
 
-            tenMinuteDriver = new ChromeDriver();
+            tenMinuteDriver = new ChromeDriver(options);
             tenMinuteDriver.Navigate().GoToUrl("https://10minutemail.com/");
-            tenMinuteDriver.Manage().Window.Maximize();
             tenMinuteMailPage = new TenMinuteMailPage(tenMinuteDriver);
             tenMinuteMailPage.CopyButton.Click();
-            driver.Manage().Window.Maximize();
+
             driver.Navigate().GoToUrl("http://www.interzoid.com");
+
             mainPage = new MainPage(driver);
             mainPage.RegisterButton.Click();
+
             registerPage = new RegisterPage(driver);
 
             registerPage.EmailAddress.Text = Clipboard.GetText(TextDataFormat.Text);
@@ -65,6 +75,7 @@ namespace test
             loginPage = new LoginPage(driver, Clipboard.GetText(TextDataFormat.Text));
             loginPage.SetDatas();
             loginPage.LoginButton.Click();
+
             mainPage.ServiceButton.Click();
 
             servicesPage = new ServicesPage(driver);
@@ -86,11 +97,14 @@ namespace test
             ItemPage itemPage;
             CheckOutPage checkOutPage;
 
-            IWebDriver driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("start-maximized");
+
+            IWebDriver driver = new ChromeDriver(options);
             driver.Navigate().GoToUrl("http://demo.cs-cart.com");
 
             marketHome = new MarketHomePage(driver);
-            marketHome.Search.Text = "PC";
+            marketHome.Search.Text = "Mobile";
             marketHome.SetDatas();
             marketHome.SearchButton.Click();
 
@@ -102,10 +116,7 @@ namespace test
             itemPage.CheckOut();
 
             checkOutPage = new CheckOutPage(driver);
-            checkOutPage.CheckOutAddress.Text = "test";
-            checkOutPage.CheckOutEmail.Text = "test@test.com";
-            checkOutPage.SetDatas();
-            checkOutPage.PhoneOrderButton.Click();
+            checkOutPage.Signin();
             checkOutPage.CheckOut();
 
         }
