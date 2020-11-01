@@ -71,7 +71,7 @@ namespace SeleniumAutomatization.Test1Pages
             int count = 0;
             Agrrement.Click();
 
-            MessageBox.Show("Waiting until Captha be manual solved.");
+            MessageBox.Show("Waiting until Captha be manual solved.\n\nHit OK when the Captha is solved.");
             while (CheckIfEnabled() == false)
             {
                 Console.WriteLine("Waiting until Captha be manual solved.");

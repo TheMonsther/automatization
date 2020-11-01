@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace SeleniumAutomatization
 {
-    class Program
+    class TestConfigurationMain
     {
         [STAThread]
         static void Main(string[] args)
@@ -19,7 +19,7 @@ namespace SeleniumAutomatization
 
             if (test1 == true)
             {
-                Console.WriteLine("Test1 starting");
+                Console.WriteLine("\nTest1 starting");
 
                 string confirmationLink;
                 string email;
@@ -90,7 +90,7 @@ namespace SeleniumAutomatization
                 weatherCityPage.City.Text = "--";
                 weatherCityPage.State.Text = "--";
                 httpStatus = weatherCityPage.GetHttpStatus(weatherCityPage.LicenceKey.Text, weatherCityPage.City.Text, weatherCityPage.State.Text);
-                Console.WriteLine("\n\nReceived: {0}\nExpected: 400:Bad Request", httpStatus);
+                Console.WriteLine("\n\nReceived: {0}\nExpected: 400:Bad Request\n\n", httpStatus);
 
                 driver.Close();
             }
@@ -103,7 +103,7 @@ namespace SeleniumAutomatization
 
         public static void Test2()
         {
-            Console.WriteLine("Test2 starting");
+            Console.WriteLine("\nTest2 starting");
 
             MarketHomePage marketHome;
             MarketSearchResultPage marketSearchResultPage;
